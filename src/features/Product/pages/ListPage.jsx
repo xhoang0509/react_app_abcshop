@@ -66,7 +66,7 @@ function ListPage(props) {
     const setNewFilter = (newFilters) => {
         setFilters({ ...newFilters });
     };
-    console.log(filters);
+    
     return (
         <Box pt={4}>
             <Container sx={{ maxWidth: '1400px' }}>

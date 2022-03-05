@@ -1,13 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Box } from '@mui/system';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
+import ListPage from './pages/ListPage';
 
-ProductFeature.propTypes = {};
-
-function ProductFeature(props) {
+function ProductFeature() {
     return (
         <Box>
             <Routes>

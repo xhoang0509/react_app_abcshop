@@ -1,7 +1,7 @@
 import { Button, createTheme, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 SmallNavbar.propTypes = {};
@@ -26,15 +26,7 @@ const useStyles = makeStyles(() => ({
 }));
 function SmallNavbar({ pages }) {
     const classes = useStyles();
-    const [anchorElNav, setAnchorElNav] = useState(null);
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
-
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
     return (
         <>
             <Typography

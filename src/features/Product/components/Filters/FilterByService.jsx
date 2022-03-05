@@ -17,6 +17,12 @@ const useStyles = makeStyles(() => ({
     list: {
         padding: 0,
         listStyleType: 'none',
+
+        '& > li': {
+            '&:hover': {
+                color: theme.palette.primary.main,
+            },
+        },
     },
 }));
 

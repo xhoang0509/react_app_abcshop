@@ -5,6 +5,7 @@ import { createTheme, Typography } from '@mui/material';
 import { STATIC_HOST, THUMBNAIL_PLACEHOLDER } from 'constants/index';
 import { formatPrice } from 'utils/common';
 import { makeStyles } from '@mui/styles';
+import { useNavigate } from 'react-router-dom';
 
 Product.propTypes = {
     product: PropTypes.object,
@@ -21,13 +22,19 @@ const useStyles = makeStyles(() => ({
         color: '#fff',
     },
 }));
+
 function Product({ product }) {
     const classes = useStyles();
+    const navigate = useNavigate();
     const thumbnailUrl = product.thumbnail
         ? STATIC_HOST + product.thumbnail.url
         : THUMBNAIL_PLACEHOLDER;
+
+    const handleProductClick = (id) => {
+        navigate(`/product/${id}`);
+    };
     return (
-        <Box padding={1} className={classes.root}>
+        <Box padding={1} className={classes.root} onClick={() => handleProductClick(product.id)}>
             <Box padding={1} minHeight="215px">
                 <img src={thumbnailUrl} alt={product.name} width="100%" />
             </Box>

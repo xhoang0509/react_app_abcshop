@@ -14,7 +14,7 @@ function App() {
             <Header />
             <Routes>
                 <Route path="/" element={<ProductFeature />} />
-                <Route path="product" element={<ProductFeature />} />
+                <Route path="product/*" element={<ProductFeature />} />
                 <Route path="blog" element={<BlogFeature />} />
                 <Route path="about" element={<AboutFeature />} />
                 <Route path="contact" element={<ContactFeature />} />

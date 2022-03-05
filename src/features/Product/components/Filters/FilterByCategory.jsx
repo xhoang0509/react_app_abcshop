@@ -36,15 +36,15 @@ function FilterByCategory({ onChange }) {
     const [categoriesList, setCategoriesList] = useState([]);
 
     useEffect(() => {
-        (async () => {
-            try {
+        try {
+            (async () => {
                 const response = await categoryApi.getAll();
                 const newResponse = response.map((x) => ({ id: x.id, name: x.name }));
                 setCategoriesList(newResponse);
-            } catch (error) {
-                console.log('Failed to fetch list categories');
-            }
-        })();
+            })();
+        } catch (error) {
+            console.log('Failed to fetch list categories');
+        }
     }, []);
 
     const handleCategoryClick = (category) => {
