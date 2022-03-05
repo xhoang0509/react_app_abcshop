@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import { Box } from '@mui/system';
+import Footer from 'components/Footer';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Header from './components/Header';
+import AboutFeature from './features/About';
+import BlogFeature from './features/Blog';
+import ContactFeature from './features/Contact';
+import ProductFeature from './features/Product';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Box className="app">
+            <Header />
+            <Routes>
+                <Route path="/" element={<ProductFeature />} />
+                <Route path="product" element={<ProductFeature />} />
+                <Route path="blog" element={<BlogFeature />} />
+                <Route path="about" element={<AboutFeature />} />
+                <Route path="contact" element={<ContactFeature />} />
+            </Routes>
+            <Footer />
+        </Box>
+    );
 }
 
 export default App;
