@@ -4,7 +4,11 @@ import { Box, createTheme, IconButton, Menu, MenuItem, Typography } from '@mui/m
 import { makeStyles } from '@mui/styles';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-LargeNavbar.propTypes = {};
+import PropTypes from 'prop-types';
+LargeNavbar.propTypes = {
+    pages: PropTypes.array,
+    onNavbarClick: PropTypes.func,
+};
 
 const theme = createTheme();
 const useStyles = makeStyles(() => ({
@@ -20,7 +24,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-function LargeNavbar({ pages }) {
+function LargeNavbar({ pages, onNavbarClick }) {
     const classes = useStyles();
     const [anchorElNav, setAnchorElNav] = useState(null);
 

@@ -66,10 +66,10 @@ function ListPage(props) {
     const setNewFilter = (newFilters) => {
         setFilters({ ...newFilters });
     };
-    
+
     return (
         <Box pt={4}>
-            <Container sx={{ maxWidth: '1400px' }}>
+            <Container>
                 <Paper className={classes.paper} elevation={0}>
                     <ProductSlider />
 

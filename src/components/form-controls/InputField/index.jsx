@@ -24,12 +24,13 @@ function InputField(props) {
             render={({ field }) => {
                 return (
                     <TextField
-                        margin="normail"
+                        margin="normal"
                         {...field}
+                        fullWidth
                         label={label}
                         disabled={disabled}
                         error={!!hasError}
-                        helperText={errors}
+                        helperText={errors[name]?.message}
                     />
                 );
             }}

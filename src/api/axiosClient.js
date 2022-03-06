@@ -6,7 +6,8 @@ const axiosClient = axios.create({
         'Content-Type': 'application/json',
     },
 });
-
+// Interceptors
+// Add a request interceptor
 axiosClient.interceptors.request.use(
     function (config) {
         // Do something before request is sent

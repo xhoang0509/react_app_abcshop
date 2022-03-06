@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => ({
         '& > img': {
             margin: theme.spacing(2),
             width: '152px',
-            maxHeight: '100%',
+            // maxHeight: '100%',
         },
     },
     timeline: {
