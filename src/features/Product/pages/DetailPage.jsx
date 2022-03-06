@@ -2,10 +2,16 @@ import { Container, createTheme, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
+import AddToCartForm from '../components/AddToCartForm';
+import ProductAdditional from '../components/ProductAdditional';
+import ProductDescription from '../components/ProductDescription';
 import ProductInfo from '../components/ProductInfo';
+import ProductMenu from '../components/ProductMenu';
+import ProductReviews from '../components/ProductReviews';
 import ProductThumbnail from '../components/ProductThumbnail';
 import useProductDetail from '../hooks/useProductDetail';
+
 
 const theme = createTheme();
 const useStyles = makeStyles(() => ({
@@ -26,6 +32,11 @@ function DetailPage() {
 
     const { product, loading } = useProductDetail(productId);
 
+    const handleAddToCartSubmit = ({ quantity }) => {};
+
+    if (loading) {
+        return <Box>loading</Box>;
+    }
     return (
         <Box pt={4} className={classes.root}>
             <Container>
@@ -36,9 +47,17 @@ function DetailPage() {
                         </Grid>
                         <Grid item className={classes.right}>
                             <ProductInfo product={product} />
+                            <AddToCartForm onSubmit={handleAddToCartSubmit} />
                         </Grid>
                     </Grid>
                 </Paper>
+                <ProductMenu />
+
+                <Routes>
+                    <Route index element={<ProductDescription product={product} />} />
+                    <Route path="additional" element={<ProductAdditional />} />
+                    <Route path="reviews" element={<ProductReviews />} />
+                </Routes>
             </Container>
         </Box>
     );

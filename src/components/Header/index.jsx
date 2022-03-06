@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar } from '@mui/material';
+import { AppBar, Container, Link, Toolbar } from '@mui/material';
 import React from 'react';
 import AvatarUser from './components/AvatarUser';
 import LargeNavbar from './components/LargeNavbar';
@@ -34,7 +34,8 @@ function Header() {
 
                     <SmallNavbar pages={pages} />
 
-                    <AvatarUser settings={settings} />
+                    {/* <AvatarUser settings={settings} /> */}
+                    <div>Đăng kí</div>
                 </Toolbar>
             </Container>
         </AppBar>
