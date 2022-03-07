@@ -16,6 +16,7 @@ import {
 import { makeStyles } from '@mui/styles';
 import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
+import { cartItemsTotalCountSelector } from 'features/Cart/selectors';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -75,6 +76,7 @@ const MODE = { LOGIN: 'login', REGISTER: 'register' };
 function Header() {
     const classes = useStyles();
     const user = useSelector((state) => state.user.current);
+    const cartTotalCount = useSelector(cartItemsTotalCountSelector);
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [mode, setMode] = useState(MODE.LOGIN);
@@ -130,7 +132,7 @@ function Header() {
                                 color="inherit"
                                 onClick={handleCartClick}
                             >
-                                <Badge badgeContent={4} color="error">
+                                <Badge badgeContent={cartTotalCount} color="error">
                                     <ShoppingCartIcon />
                                 </Badge>
                             </IconButton>

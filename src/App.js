@@ -7,6 +7,7 @@ import BlogFeature from './features/Blog';
 import ContactFeature from './features/Contact';
 import ProductFeature from './features/Product';
 import './App.css';
+import CartFeture from 'features/Cart';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="blog" element={<BlogFeature />} />
                 <Route path="about" element={<AboutFeature />} />
                 <Route path="contact" element={<ContactFeature />} />
+                <Route path="cart" element={<CartFeture />} />
             </Routes>
             <Footer />
         </Box>

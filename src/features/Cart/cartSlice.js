@@ -15,7 +15,7 @@ const cartSlice = createSlice({
         },
 
         hideMiniCart(state) {
-            state.hideMiniCart = false;
+            state.showMiniCart = true;
         },
 
         addToCart(state, action) {
@@ -35,7 +35,7 @@ const cartSlice = createSlice({
 
         setQuantity(state, action) {
             const { id, quantity } = action.payload;
-            // check if product is aviable in cart
+            // check if product is avaiable in cart
             const index = state.cartItems.findIndex((x) => x.id === id);
             if (index >= 0) {
                 state.cartItems[index].quantity += quantity;
@@ -44,14 +44,46 @@ const cartSlice = createSlice({
             localStorage.setItem('cart', JSON.stringify(state.cartItems));
         },
 
-        removeFormCart(state, action) {
-            const { idNeedRemove } = action.payload;
-            state.cartItems = state.cartItems.filter((x) => x.id !== idNeedRemove);
+        increaseQuantity(state, action) {
+            const id = action.payload;
+            const index = state.cartItems.findIndex((x) => x.id === id);
+            if (index >= 0) {
+                state.cartItems[index].quantity += 1;
+            }
+
             localStorage.setItem('cart', JSON.stringify(state.cartItems));
+        },
+
+        decreaseQuantity(state, action) {
+            const id = action.payload;
+            const index = state.cartItems.findIndex((x) => x.id === id);
+            if (index >= 0) {
+                state.cartItems[index].quantity -= 1;
+                if (state.cartItems[index].quantity === 0) {
+                    state.cartItems = state.cartItems.filter((x) => x.id !== id);
+                }
+            }
+
+            localStorage.setItem('cart', JSON.stringify(state.cartItems));
+        },
+
+        removeFromCart(state, action) {
+            const idNeedRemove = action.payload;
+            state.cartItems = state.cartItems.filter((x) => x.id !== idNeedRemove);
+
+            localStorage.setItem(StorageKeys.CART, JSON.stringify(state.cartItems));
         },
     },
 });
 
 const { actions, reducer } = cartSlice;
-export const { showMiniCart, hideMiniCart, addToCart, setQuantity, removeFormCart } = actions;
+export const {
+    showMiniCart,
+    hideMiniCart,
+    addToCart,
+    setQuantity,
+    increaseQuantity,
+    decreaseQuantity,
+    removeFromCart,
+} = actions;
 export default reducer;

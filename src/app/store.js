@@ -10,5 +10,4 @@ const store = configureStore({
     reducer: rootReducer,
 });
 
-// store.subscribe(localStorage.getItem(StorageKeys.CART(cart)));
 export default store;
