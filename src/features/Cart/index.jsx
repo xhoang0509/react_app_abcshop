@@ -1,3 +1,4 @@
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Container, createTheme, IconButton, Paper, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
@@ -5,10 +6,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { formatPrice } from 'utils/common';
-
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { cartItemsCountSelector, cartTotalSelector } from './selectors';
 import CartTable from './components/CartTable';
+import { cartItemsCountSelector, cartTotalSelector } from './selectors';
+import Link from '@mui/material/Link';
 
 CartFeature.propTypes = {};
 const theme = createTheme();
@@ -37,6 +37,13 @@ const useStyles = makeStyles(() => ({
             borderRadius: '4px',
         },
     },
+    here: {
+        color: theme.palette.primary.light,
+        cursor: 'pointer',
+        '&:hover': {
+            textDecoration: 'underline',
+        },
+    },
 }));
 
 function CartFeature(props) {
@@ -59,7 +66,21 @@ function CartFeature(props) {
                     </Box>
                     {cartList.length === 0 ? (
                         <Box textAlign="center" component="h1">
-                            Không có sản phẩm nào trong giỏ hàng
+                            <Typography>
+                                Giỏ hàng trống, bấm vào{' '}
+                                <span
+                                    onClick={() => navigate('../product')}
+                                    className={classes.here}
+                                >
+                                    đây
+                                </span>{' '}
+                                để mua hàng
+                            </Typography>
+                            <img
+                                src="https://www.pngfind.com/pngs/m/272-2727925_continue-shopping-empty-cart-png-transparent-png.png"
+                                alt=""
+                                width="100%"
+                            />
                         </Box>
                     ) : (
                         <>

@@ -33,7 +33,7 @@ const userSlice = createSlice({
             // clear local store
             localStorage.removeItem(StorageKeys.USER);
             localStorage.removeItem(StorageKeys.TOKEN);
-
+            
             state.current = {};
         },
     },

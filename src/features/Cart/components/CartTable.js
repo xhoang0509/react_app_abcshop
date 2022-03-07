@@ -1,6 +1,6 @@
 import { AddCircleOutline, RemoveCircleOutline } from '@mui/icons-material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { IconButton } from '@mui/material';
+import { createTheme, IconButton } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,12 +12,14 @@ import { makeStyles } from '@mui/styles';
 import { STATIC_HOST, THUMBNAIL_PLACEHOLDER } from 'constants';
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { formatPrice } from 'utils/common';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '../cartSlice';
 function createData(id, name, image, salePrice, originalPrice, quantity) {
     return { id, name, image, salePrice, originalPrice, quantity };
 }
 
+const theme = createTheme();
 const useStyles = makeStyles(() => ({
     root: {},
 
@@ -28,9 +30,16 @@ const useStyles = makeStyles(() => ({
     originalPrice: {
         textDecoration: 'line-through',
     },
+    click: {
+        fontWeight: 'bold',
+        '&:hover': {
+            color: theme.palette.primary.light,
+        },
+    },
 }));
 
 function CartTable({ cartList }) {
+    const nagivate = useNavigate();
     const dispatch = useDispatch();
     const classes = useStyles();
     const rows = [];
@@ -49,6 +58,10 @@ function CartTable({ cartList }) {
     const handleDecreaseClick = (id) => {
         const action = decreaseQuantity(id);
         dispatch(action);
+    };
+
+    const handleProductClick = (id) => {
+        nagivate(`../product/${id}`);
     };
 
     const handleDeleteClick = (id) => {
@@ -77,8 +90,18 @@ function CartTable({ cartList }) {
                             key={row.name}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell>{row.id}</TableCell>
-                            <TableCell component="th" scope="row">
+                            <TableCell
+                                className={classes.click}
+                                onClick={() => handleProductClick(row.id)}
+                            >
+                                {row.id}
+                            </TableCell>
+                            <TableCell
+                                className={classes.click}
+                                component="th"
+                                scope="row"
+                                onClick={() => handleProductClick(row.id)}
+                            >
                                 {row.name}
                             </TableCell>
                             <TableCell align="center">
