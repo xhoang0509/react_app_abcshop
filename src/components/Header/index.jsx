@@ -1,6 +1,8 @@
 import { Close } from '@mui/icons-material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {
     AppBar,
+    Badge,
     Box,
     Button,
     Container,
@@ -8,22 +10,19 @@ import {
     Dialog,
     DialogContent,
     IconButton,
-    Link,
-    MenuItem,
     Toolbar,
     Typography,
 } from '@mui/material';
-import { red } from '@mui/material/colors';
 import { makeStyles } from '@mui/styles';
 import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import AvatarUser from './components/AvatarUser';
 import LargeNavbar from './components/LargeNavbar';
 import SmallNavbar from './components/SmallNavbar';
 
-Header.propTypes = {};
 const theme = createTheme();
 const useStyles = makeStyles(() => ({
     root: {},
@@ -76,7 +75,7 @@ const MODE = { LOGIN: 'login', REGISTER: 'register' };
 function Header() {
     const classes = useStyles();
     const user = useSelector((state) => state.user.current);
-    console.log('user', user);
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [mode, setMode] = useState(MODE.LOGIN);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -100,6 +99,10 @@ function Header() {
     const handleUserLogout = () => {
         handleCloseMenu();
     };
+
+    const handleCartClick = () => {
+        navigate('cart');
+    };
     return (
         <div className={classes.root}>
             <Box sx={{ flexGrow: 1 }}>
@@ -121,6 +124,16 @@ function Header() {
                                     Đăng nhập
                                 </Typography>
                             )}
+                            <IconButton
+                                size="large"
+                                aria-label="show 4 new mails"
+                                color="inherit"
+                                onClick={handleCartClick}
+                            >
+                                <Badge badgeContent={4} color="error">
+                                    <ShoppingCartIcon />
+                                </Badge>
+                            </IconButton>
                         </Toolbar>
                     </Container>
                 </AppBar>

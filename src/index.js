@@ -26,7 +26,7 @@ ReactDOM.render(
                         top: '100px',
                     }}
                     autoHideDuration={1500}
-                    classeName={{ styles }}
+                    styles={{ styles }}
                 >
                     <App />
                 </SnackbarProvider>

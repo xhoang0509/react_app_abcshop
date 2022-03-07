@@ -1,12 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { createTheme, Button } from '@mui/material';
+import { Button, createTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import QuantityField from 'components/form-controls/QuantityField';
+import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import * as yup from 'yup';
-
 const theme = createTheme();
 
 const useStyles = makeStyles(() => ({
@@ -35,7 +36,8 @@ const schema = yup.object().shape({
 });
 function AddToCartForm({ onSubmit = null }) {
     const classes = useStyles();
-
+    const user = useSelector((state) => state.user.current);
+    const { enqueueSnackbar } = useSnackbar();
     const form = useForm({
         defaultValues: {
             quantity: 1,
@@ -44,6 +46,10 @@ function AddToCartForm({ onSubmit = null }) {
     });
 
     const formSubmit = async (values) => {
+        if (Object.keys(user).length === 0) {
+            enqueueSnackbar('Yêu cầu đăng nhập để thêm sản phẩm !', { variant: 'error' });
+            return;
+        }
         if (onSubmit) {
             await onSubmit(values);
         }

@@ -1,7 +1,10 @@
 import { Container, createTheme, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
+import { addToCart } from 'features/Cart/cartSlice';
+import { useSnackbar } from 'notistack';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes, useParams } from 'react-router-dom';
 import AddToCartForm from '../components/AddToCartForm';
 import ProductAdditional from '../components/ProductAdditional';
@@ -11,8 +14,6 @@ import ProductMenu from '../components/ProductMenu';
 import ProductReviews from '../components/ProductReviews';
 import ProductThumbnail from '../components/ProductThumbnail';
 import useProductDetail from '../hooks/useProductDetail';
-
-
 const theme = createTheme();
 const useStyles = makeStyles(() => ({
     root: {
@@ -26,13 +27,24 @@ const useStyles = makeStyles(() => ({
     right: { flex: '1 1 0', padding: theme.spacing(1.5) },
 }));
 function DetailPage() {
+    const { enqueueSnackbar } = useSnackbar();
     const classes = useStyles();
+    const dispatch = useDispatch();
     const urlParams = useParams();
     const productId = urlParams.id;
 
     const { product, loading } = useProductDetail(productId);
 
-    const handleAddToCartSubmit = ({ quantity }) => {};
+    const handleAddToCartSubmit = ({ quantity }) => {
+        const action = addToCart({
+            id: product.id,
+            product,
+            quantity,
+        });
+        console.log(action);
+        dispatch(action);
+        enqueueSnackbar('Sản phẩm đã được thêm vào giỏ hàng !', { variant: 'success' });
+    };
 
     if (loading) {
         return <Box>loading</Box>;
