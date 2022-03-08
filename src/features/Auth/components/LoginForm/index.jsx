@@ -1,12 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Avatar, Box, Button, createTheme, Typography } from '@mui/material';
+import { Avatar, Box, Button, Typography } from '@mui/material';
+import LinearProgress from '@mui/material/LinearProgress';
+import { createTheme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 import InputField from 'components/form-controls/InputField';
 import PasswordField from 'components/form-controls/PasswordField';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import Service from './components/Service';
 LoginForm.propTypes = {};
 const theme = createTheme();
 const useStyles = makeStyles(() => {
@@ -66,6 +69,7 @@ function LoginForm(props) {
     };
     return (
         <Box>
+            {isSubmitting && <LinearProgress className={classes.progress} />}
             <Avatar className={classes.avatar} sx={{ m: 1, bgcolor: 'secondary.main' }}>
                 <LockOutlinedIcon />
             </Avatar>
@@ -89,6 +93,7 @@ function LoginForm(props) {
                     Đăng nhập
                 </Button>
             </form>
+            <Service />
         </Box>
     );
 }

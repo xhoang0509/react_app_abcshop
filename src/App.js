@@ -1,13 +1,13 @@
 import { Box } from '@mui/system';
 import Footer from 'components/Footer';
+import CartFeture from 'features/Cart';
 import { Route, Routes } from 'react-router-dom';
+import './App.css';
 import Header from './components/Header';
 import AboutFeature from './features/About';
 import BlogFeature from './features/Blog';
 import ContactFeature from './features/Contact';
 import ProductFeature from './features/Product';
-import './App.css';
-import CartFeture from 'features/Cart';
 
 function App() {
     return (

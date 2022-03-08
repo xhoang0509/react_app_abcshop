@@ -1,10 +1,15 @@
+import { Box } from '@mui/system';
 import React from 'react';
-import PropTypes from 'prop-types';
+import ListPage from './pages/ListPage';
 
 BlogFeature.propTypes = {};
 
 function BlogFeature(props) {
-    return <div>BlogFeature</div>;
+    return (
+        <Box>
+            <ListPage />
+        </Box>
+    );
 }
 
 export default BlogFeature;

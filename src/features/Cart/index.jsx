@@ -1,5 +1,5 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Container, createTheme, IconButton, Paper, Typography } from '@mui/material';
+import { Button, Container, createTheme, IconButton, Paper, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
 import React from 'react';
@@ -43,6 +43,9 @@ const useStyles = makeStyles(() => ({
         '&:hover': {
             textDecoration: 'underline',
         },
+    },
+    checkout: {
+        textAlign: 'right',
     },
 }));
 
@@ -95,6 +98,9 @@ function CartFeature(props) {
 
                             <Box>
                                 <CartTable cartList={cartList} />
+                            </Box>
+                            <Box mt={2} className={classes.checkout}>
+                                <Button variant="contained">Đặt hàng</Button>
                             </Box>
                         </>
                     )}

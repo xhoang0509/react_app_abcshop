@@ -87,7 +87,8 @@ function Header() {
         setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleClose = (event, reason) => {
+        if (reason && reason === 'backdropClick') return;
         setOpen(false);
     };
 
@@ -100,6 +101,10 @@ function Header() {
 
     const handleUserLogout = () => {
         handleCloseMenu();
+    };
+
+    const handleOutSideClick = (event, reason) => {
+        if (reason && reason === 'backDropClick') return;
     };
 
     const handleCartClick = () => {
@@ -143,7 +148,7 @@ function Header() {
 
             <Dialog
                 disableEscapeKeyDown
-                onBackdropClick
+                onBackdropClick={(event, reason) => handleOutSideClick(event, reason)}
                 open={open}
                 onClose={handleClose}
                 className={classes.diaLogRoot}

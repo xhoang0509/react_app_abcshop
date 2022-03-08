@@ -97,7 +97,7 @@ function ListPage(props) {
                                 <Box className={classes.pagination}>
                                     <Pagination
                                         className={classes.pagination}
-                                        count={Math.ceil(pagination.total / filters._limit)}
+                                        count={Math.ceil(pagination.total / filters._limit) || 0}
                                         page={filters._page}
                                         onChange={handlePageChange}
                                         color="primary"
